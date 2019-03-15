@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AutoSudoku_v2</string>
+    <string name="title_activity_main_field">MainFieldActivity</string>
+</resources>
