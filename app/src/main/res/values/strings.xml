@@ -1,4 +1,20 @@
 <resources>
-    <string name="app_name">AutoSudoku_v2</string>
-    <string name="title_activity_main_field">MainFieldActivity</string>
+    <string name="app_name">AutoSudoku</string>
+    <string name="title_activity_main_field">Sudoku</string>
+    <string-array name="victory_congratulations">
+        <item>Congratulations!</item>
+        <item>Victory!</item>
+        <item>Nice job!</item>
+        <item>Amazing!</item>
+        <item>Grate!</item>
+    </string-array>
+    <string-array name="assept_buttons">
+        <item>Thank you</item>
+        <item>OK</item>
+        <item>Continue</item>
+    </string-array>
+    <string-array name="record_victory_congratulations">
+        <item>New record!</item>
+        <item>New best time!</item>
+    </string-array>>
 </resources>

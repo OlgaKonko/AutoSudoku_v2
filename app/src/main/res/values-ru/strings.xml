@@ -1,0 +1,23 @@
+<resources>
+    <string name="title_activity_main_field">Судоку</string>
+    <string-array name="victory_congratulations">
+        <item>Поздравляю!</item>
+        <item>Вы умничка!</item>
+        <item>Вы молодец!</item>
+        <item>Восхитительно!</item>
+        <item>Круто!</item>
+        <item>Офигенно!</item>
+        <item>Прекрасно!</item>
+    </string-array>
+    <string-array name="assept_buttons">
+        <item>Я сделала это!</item>
+        <item>Я сложила!</item>
+        <item>OK</item>
+        <item>Вау</item>
+        <item>Хочу еще</item>
+    </string-array>
+    <string-array name="record_victory_congratulations">
+        <item>Новый рекорд!</item>
+        <item>Новое лучшее время!</item>
+    </string-array>
+</resources>

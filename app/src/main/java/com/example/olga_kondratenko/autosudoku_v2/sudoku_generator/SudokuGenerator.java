@@ -10,16 +10,8 @@ import static com.example.olga_kondratenko.autosudoku_v2.utils.Constants.QUANTIT
 public class SudokuGenerator {
 
     public static Sudoku generateSudoku(long seed) {
-        Sudoku sudoku = new Sudoku(seed);
-        /*for (int rowIndex= 0; rowIndex<QUANTITY; rowIndex++){
-            for (int columnIndex= 0; columnIndex<QUANTITY; columnIndex++){
-                System.out.print(sudoku.get(rowIndex, columnIndex)+" ");
-                }
-                System.out.println();
-            }
-            System.out.println();
-            */
-        return compliteSudoku(sudoku);
+       // Sudoku sudoku = new Sudoku(seed);
+        return generateTestSudoku(seed);
     }
 
     public static Sudoku generateTestSudoku(long seed) {

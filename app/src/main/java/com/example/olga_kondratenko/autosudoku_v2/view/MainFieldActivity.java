@@ -1,6 +1,8 @@
 package com.example.olga_kondratenko.autosudoku_v2.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.example.olga_kondratenko.autosudoku_v2.view.models.Sizes;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import static com.example.olga_kondratenko.autosudoku_v2.model.Instrument.PEN;
 import static com.example.olga_kondratenko.autosudoku_v2.model.Instrument.PENCIL;
@@ -207,8 +210,25 @@ numbersField.markNormal(index);
 
     @Override
     public void showVictory() {
-        Toast toast = Toast.makeText(this, "Congratulations!", Toast.LENGTH_LONG);
-        toast.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Random random = new Random();
+        String[] victoryMessages = getResources().getStringArray(R.array.victory_congratulations);
+        String victoryMessage = victoryMessages[random.nextInt(victoryMessages.length)];
+
+        String[] buttonMessages = getResources().getStringArray(R.array.assept_buttons);
+        String buttonMessage = buttonMessages[random.nextInt(buttonMessages.length)];
+
+        builder.setTitle("")
+                .setMessage(victoryMessage)
+                .setCancelable(false)
+                .setNegativeButton(buttonMessage,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override
