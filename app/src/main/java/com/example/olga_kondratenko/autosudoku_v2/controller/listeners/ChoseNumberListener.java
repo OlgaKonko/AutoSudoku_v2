@@ -14,6 +14,6 @@ public class ChoseNumberListener implements View.OnClickListener  {
 
     @Override
     public void onClick(View view) {
-       Controller.getController().markNumber(indexNumber);
+       Controller.getActionsController().markNumber(indexNumber);
     }
 }

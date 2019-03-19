@@ -11,9 +11,10 @@ import static com.example.olga_kondratenko.autosudoku_v2.utils.Constants.QUANTIT
 
 public class SudokuModel implements Serializable{
     private List<List<SudokuCellModel>> cells;
+    private List<Integer> solutionsTotal;
 
     public SudokuModel() {
-
+        solutionsTotal= new ArrayList<>(QUANTITY);
         cells = new ArrayList<>(QUANTITY);
         for (int rowIndex= 0; rowIndex<QUANTITY; rowIndex++){
             List<SudokuCellModel> row = new ArrayList<>(QUANTITY);
@@ -21,6 +22,7 @@ public class SudokuModel implements Serializable{
                 row.add(new SudokuCellModel());
             }
             cells.add(row);
+            solutionsTotal.add(0);
         }
     }
 
@@ -30,8 +32,18 @@ public class SudokuModel implements Serializable{
 
     public void setCellSolution(int x, int y, int solution, boolean given){
         SudokuCellModel cell = cells.get(x).get(y);
+        if(cell.solution>0){
+            int index =cell.solution-1;
+            solutionsTotal.set(index, solutionsTotal.get(index)-1);
+        }
+        if(solution>0) {
+            int index = solution - 1;
+            solutionsTotal.set(index, solutionsTotal.get(index)+1);
+        }
         cell.solution = solution;
         cell.given = given;
+
+
     }
 
     public boolean isCellGiven(int x, int y){
@@ -58,6 +70,9 @@ public class SudokuModel implements Serializable{
         return cells.get(x).get(y).getSolvedLevel();
     }
 
+    public List<Integer> getSolutionsTotal(){
+        return solutionsTotal;
+    }
 
     public boolean checkCellBlockSolved(int x, int y){
         return cells.get(x).get(y).isBlockSolved;

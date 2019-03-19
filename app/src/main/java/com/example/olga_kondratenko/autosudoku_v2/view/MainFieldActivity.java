@@ -3,9 +3,12 @@ package com.example.olga_kondratenko.autosudoku_v2.view;
 import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.olga_kondratenko.autosudoku_v2.R;
@@ -15,6 +18,7 @@ import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.OneMoreSu
 import com.example.olga_kondratenko.autosudoku_v2.model.Instrument;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.Field;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.NumbersEnterField;
+import com.example.olga_kondratenko.autosudoku_v2.view.models.Sizes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +33,8 @@ public class MainFieldActivity extends Activity implements ViewController{
     public NumbersEnterField numbersField;
     public HashMap<Instrument, ImageButton> instruments;
     public Button continueButton;
+    public ProgressBar spinner;
+    public TextView unUsedNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,14 @@ public class MainFieldActivity extends Activity implements ViewController{
         continueButton = findViewById(R.id.proceed);
         continueButton.setOnClickListener(new OneMoreSudokuListener());
 
+        spinner = findViewById(R.id.spinner);
+        hideSpinner();
+
+        unUsedNumbers =  findViewById(R.id.unUsedNumbersView);
+        setButtonsSize();
+
         instance = this;
+
         Controller.getController().fieldDrowActions();
 
     }
@@ -58,12 +71,17 @@ public class MainFieldActivity extends Activity implements ViewController{
         instance = this;
     }
 
-
     private void setTableSize() {
         Point size = new Point();
         WindowManager w = getWindowManager();
         w.getDefaultDisplay().getSize(size);
         field.setSize(size.x, size.y);
+    }
+
+    private void setButtonsSize() {
+        android.view.ViewGroup.LayoutParams params = unUsedNumbers.getLayoutParams();
+        params.width = Sizes.layoutWidth/3;
+       unUsedNumbers.setLayoutParams(params);
     }
 
     private void setInstruments() {
@@ -76,6 +94,25 @@ public class MainFieldActivity extends Activity implements ViewController{
         instruments.put(PEN, penButton);
         instruments.put(PENCIL, pencilButton);
 
+    }
+
+    public void showSpinner(){
+        spinner.setVisibility(View.VISIBLE);
+        android.view.ViewGroup.LayoutParams params = spinner.getLayoutParams();
+        params.width = Sizes.layoutWidth;
+        params.height = Sizes.layoutWidth+2*Sizes.padding;
+        spinner.setLayoutParams(params);
+        field.setVisibility(View.INVISIBLE);
+
+    }
+
+    public void hideSpinner(){
+        spinner.setVisibility(View.INVISIBLE);
+        android.view.ViewGroup.LayoutParams params = spinner.getLayoutParams();
+        params.width = Sizes.emptySize;
+        params.height = Sizes.layoutWidth+2*Sizes.padding;
+        spinner.setLayoutParams(params);
+        field.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -124,6 +161,21 @@ public class MainFieldActivity extends Activity implements ViewController{
     }
 
     @Override
+    public void markNumberAsUsed(int index) {
+        numbersField.markUsed(index);
+    }
+
+    @Override
+    public void markNumberAsOverUsed(int index) {
+        numbersField.markOverUsed(index);
+    }
+
+    @Override
+    public void markNumberAsNormal(int index) {
+numbersField.markNormal(index);
+    }
+
+    @Override
     public void markPenNumber(int x, int y, int number){
         field.cells[x][y].markPen(number);
     }
@@ -157,6 +209,11 @@ public class MainFieldActivity extends Activity implements ViewController{
     public void showVictory() {
         Toast toast = Toast.makeText(this, "Congratulations!", Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    @Override
+    public void showUnUsedNumbers(String s) {
+        unUsedNumbers.setText(s);
     }
 
 }

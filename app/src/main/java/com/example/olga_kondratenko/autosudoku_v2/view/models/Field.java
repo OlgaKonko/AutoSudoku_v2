@@ -62,36 +62,6 @@ public class Field extends TableLayout {
         focusedCell.markFocused();
     }
 
-    /*
-
-    public void fillField() {
-        for (int x = 0; x < FIELD_SIZE; x++) {
-            for (int y = 0; y < FIELD_SIZE; y++) {
-                cells[x][y].setSolutions(currentSudoku.field[x][y], true);
-            }
-
-        }
-    }
-
-    public void updateSellsBackground(){
-        for (int x = 0; x < FIELD_SIZE; x++) {
-            for (int y = 0; y < FIELD_SIZE; y++) {
-                cells[x][y].updateBackGround();
-            }
-
-        }
-    }
-
-    public void fillSolvedField() {
-        for (int x = 0; x < FIELD_SIZE; x++) {
-            for (int y = 0; y < FIELD_SIZE; y++) {
-                cells[x][y].markSolved();
-            }
-
-        }
-    }
-
-*/
     private void createButton(int x, int y, TableRow row) {
         if (y % BLOCK_SIZE == 0) {
             createLine(row, Sizes.gameFieldLinesSize, Sizes.gameFieldCellSize);

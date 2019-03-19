@@ -1,4 +1,4 @@
-package com.example.olga_kondratenko.autosudoku_v2.controller;
+package com.example.olga_kondratenko.autosudoku_v2.controller.background;
 
 
 import com.example.olga_kondratenko.autosudoku_v2.sudoku_generator.model.Sudoku;
@@ -14,16 +14,20 @@ public class GeneratedSudokuPull{
     }
 
     public static Sudoku getSudoku(){
-       while (generatedSudoku.size()==0){
-           try {
-               Thread.sleep(100);
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-       }
+      waitUntilSudokuCreated();
        Sudoku sudoku = generatedSudoku.get(0);
        generatedSudoku.remove(0);
        return sudoku;
+    }
+
+    public static void waitUntilSudokuCreated(){
+        while (generatedSudoku.size()==0){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void setSudoku(Sudoku newSudoku){

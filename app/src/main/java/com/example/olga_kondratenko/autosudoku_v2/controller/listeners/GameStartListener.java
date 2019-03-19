@@ -9,6 +9,6 @@ public class GameStartListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Controller.getController().startGame();
+        Controller.getChangeController().startGame();
     }
 }

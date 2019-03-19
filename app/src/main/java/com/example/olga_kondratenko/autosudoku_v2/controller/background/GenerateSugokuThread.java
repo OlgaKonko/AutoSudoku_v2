@@ -1,4 +1,4 @@
-package com.example.olga_kondratenko.autosudoku_v2.controller;
+package com.example.olga_kondratenko.autosudoku_v2.controller.background;
 
 
 import com.example.olga_kondratenko.autosudoku_v2.sudoku_generator.SudokuGenerator;

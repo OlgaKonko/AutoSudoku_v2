@@ -1,7 +1,9 @@
 package com.example.olga_kondratenko.autosudoku_v2.view.models;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.Button;
@@ -82,5 +84,22 @@ public class NumbersEnterField extends TableLayout {
         number.setText(String.valueOf(x * INNER_SELL_SIZE + y + 1));
     }
 
+    @SuppressLint("ResourceAsColor")
+    public void markUsed(int index) {
+        this.numbers[index/INNER_SELL_SIZE][index%INNER_SELL_SIZE].setTextColor(Color.parseColor("#9e9e9e"));
+        numbers[index/INNER_SELL_SIZE][index%INNER_SELL_SIZE].setText(String.valueOf(index+1));
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void markOverUsed(int index) {
+        this.numbers[index/INNER_SELL_SIZE][index%INNER_SELL_SIZE].setTextColor(Color.parseColor("#c43b3e"));
+        numbers[index/INNER_SELL_SIZE][index%INNER_SELL_SIZE].setText(String.valueOf(index+1));
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void markNormal(int index) {
+        this.numbers[index/INNER_SELL_SIZE][index%INNER_SELL_SIZE].setTextColor(Color.parseColor("#000000"));
+        numbers[index/INNER_SELL_SIZE][index%INNER_SELL_SIZE].setText(String.valueOf(index+1));
+    }
 
 }

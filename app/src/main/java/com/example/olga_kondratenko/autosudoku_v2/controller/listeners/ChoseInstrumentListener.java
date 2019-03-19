@@ -16,6 +16,6 @@ public class ChoseInstrumentListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Controller.getController().setInstrument(instrument);
+        Controller.getInstrumentController().setInstrument(instrument);
     }
 }

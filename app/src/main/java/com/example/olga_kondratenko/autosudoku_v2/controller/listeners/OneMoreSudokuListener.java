@@ -8,6 +8,6 @@ import com.example.olga_kondratenko.autosudoku_v2.controller.Controller;
 public class OneMoreSudokuListener implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
-        Controller.getController().newSudokuStart();
+        Controller.getFindController().generateSudoku();
     }
 }

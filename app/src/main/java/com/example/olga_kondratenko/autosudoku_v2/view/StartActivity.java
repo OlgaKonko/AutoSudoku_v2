@@ -11,9 +11,8 @@ public class StartActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      Controller.getController()
-              .setModuleController(new ModuleSwitcher(this))
-              .start();
-        finish();
+      Controller.getController().setModuleController(new ModuleSwitcher(this));
+      Controller.getChangeController().start();
+      finish();
     }
 }

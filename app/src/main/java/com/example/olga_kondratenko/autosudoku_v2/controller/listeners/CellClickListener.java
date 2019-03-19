@@ -16,7 +16,7 @@ public class CellClickListener implements View.OnClickListener  {
 
     @Override
     public void onClick(View view) {
-       Controller.getController().onCellClick(x, y);
+       Controller.getActionsController().onCellClick(x, y);
     }
 
 }
