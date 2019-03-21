@@ -157,6 +157,7 @@ public class SudokuActionsController {
 
     private void checkVictory() {
         if (getSudokuModel().checkVictory()) {
+            Controller.getViewController().stopTimer();
             Controller.getViewController().showVictory();
         }
     }

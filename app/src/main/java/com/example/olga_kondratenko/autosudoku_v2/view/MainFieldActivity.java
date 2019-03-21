@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -37,7 +38,8 @@ public class MainFieldActivity extends Activity implements ViewController{
     public HashMap<Instrument, ImageButton> instruments;
     public Button continueButton;
     public ProgressBar spinner;
-    public TextView unUsedNumbers;
+
+    public TextView timerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class MainFieldActivity extends Activity implements ViewController{
         spinner = findViewById(R.id.spinner);
         hideSpinner();
 
-        unUsedNumbers =  findViewById(R.id.unUsedNumbersView);
+        timerTextView =  findViewById(R.id.timer);
         setButtonsSize();
 
         instance = this;
@@ -82,9 +84,9 @@ public class MainFieldActivity extends Activity implements ViewController{
     }
 
     private void setButtonsSize() {
-        android.view.ViewGroup.LayoutParams params = unUsedNumbers.getLayoutParams();
+        android.view.ViewGroup.LayoutParams params = timerTextView.getLayoutParams();
         params.width = Sizes.layoutWidth/3;
-       unUsedNumbers.setLayoutParams(params);
+        timerTextView.setLayoutParams(params);
     }
 
     private void setInstruments() {
@@ -96,6 +98,38 @@ public class MainFieldActivity extends Activity implements ViewController{
 
         instruments.put(PEN, penButton);
         instruments.put(PENCIL, pencilButton);
+
+    }
+
+
+    Handler timerHandler = new Handler();
+    Timer timerRunnable = new Timer();
+
+    @Override
+    public void startTimer() {
+        timerHandler.postDelayed(timerRunnable, 0);
+    }
+
+    @Override
+    public void stopTimer() {
+        timerHandler.removeCallbacks(timerRunnable);
+    }
+
+    @Override
+    public void resetTimer() {
+        stopTimer();
+        timerTextView.setText(String.format("%d:%02d", 0, 0));
+        timerRunnable.resetTimer();
+    }
+
+    @Override
+    public long getTimer() {
+        return timerRunnable.getTime();
+    }
+
+    @Override
+    public void setTime(long time) {
+        timerRunnable.setTimer(time);
 
     }
 
@@ -229,11 +263,6 @@ numbersField.markNormal(index);
                         });
         AlertDialog alert = builder.create();
         alert.show();
-    }
-
-    @Override
-    public void showUnUsedNumbers(String s) {
-        unUsedNumbers.setText(s);
     }
 
 }

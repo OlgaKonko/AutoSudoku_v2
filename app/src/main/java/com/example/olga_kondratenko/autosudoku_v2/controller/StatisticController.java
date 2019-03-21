@@ -14,7 +14,14 @@ import java.io.ObjectOutputStream;
 
 public class StatisticController {
 
-
+public void onVictory(){
+    long time = Controller.getViewController().getTimer();
+    if (Statistic.get().minTimeSpend>time || Statistic.get().minTimeSpend==0){
+        Statistic.get().minTimeSpend = time;
+    }
+    Statistic.get().totalTimeSpend+=time;
+    Statistic.get().totalSolved++;
+}
 
 
 }

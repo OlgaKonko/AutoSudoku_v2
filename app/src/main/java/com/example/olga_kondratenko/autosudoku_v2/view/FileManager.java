@@ -16,13 +16,14 @@ public class FileManager {
     Context packageContext;
     String savedSudokuFileName ="Saved sudoku";
     String statisticFileName ="Statistic";
+    String timerFileName ="Timer";
 
     public FileManager(Context packageContext) {
         this.packageContext = packageContext;
     }
 
     public SudokuModel loadSudoku() throws IOException, ClassNotFoundException {
-        FileInputStream fis = packageContext.openFileInput(statisticFileName);
+        FileInputStream fis = packageContext.openFileInput(savedSudokuFileName);
         ObjectInputStream is = new ObjectInputStream(fis);
         SudokuModel simpleClass = (SudokuModel) is.readObject();
         is.close();
@@ -31,15 +32,32 @@ public class FileManager {
     }
 
     public void saveSudoku(SudokuModel sudokuModel) throws IOException, ClassNotFoundException {
-        FileOutputStream fos = packageContext.openFileOutput(statisticFileName, Context.MODE_PRIVATE);
+        FileOutputStream fos = packageContext.openFileOutput(savedSudokuFileName, Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
         os.writeObject(sudokuModel);
         os.close();
         fos.close();
     }
 
+    public long loadTimer() throws IOException, ClassNotFoundException {
+        FileInputStream fis = packageContext.openFileInput(timerFileName);
+        ObjectInputStream is = new ObjectInputStream(fis);
+        long time = (long) is.readObject();
+        is.close();
+        fis.close();
+        return time;
+    }
+
+    public void saveTimer(long time) throws IOException, ClassNotFoundException {
+        FileOutputStream fos = packageContext.openFileOutput(timerFileName, Context.MODE_PRIVATE);
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+        os.writeObject(time);
+        os.close();
+        fos.close();
+    }
+
     public void loadStatistic() throws IOException, ClassNotFoundException {
-        FileInputStream fis = packageContext.openFileInput(savedSudokuFileName);
+        FileInputStream fis = packageContext.openFileInput(statisticFileName);
         ObjectInputStream is = new ObjectInputStream(fis);
         Statistic simpleClass = (Statistic) is.readObject();
         is.close();
@@ -48,7 +66,7 @@ public class FileManager {
     }
 
     public void saveStatistic() throws IOException, ClassNotFoundException {
-        FileOutputStream fos = packageContext.openFileOutput(savedSudokuFileName, Context.MODE_PRIVATE);
+        FileOutputStream fos = packageContext.openFileOutput(statisticFileName, Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
         os.writeObject(Statistic.get());
         os.close();

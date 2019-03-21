@@ -26,11 +26,14 @@ public interface ViewController {
     void markAsSolved(int x, int y, int level);
     void showVictory();
 
-    void showUnUsedNumbers(String s);
-
     void markNumberAsUsed(int index);
-
     void markNumberAsOverUsed(int index);
-
     void markNumberAsNormal(int index);
+
+    void startTimer();
+    void stopTimer();
+    void resetTimer();
+
+    long getTimer();
+    void setTime(long time);
 }

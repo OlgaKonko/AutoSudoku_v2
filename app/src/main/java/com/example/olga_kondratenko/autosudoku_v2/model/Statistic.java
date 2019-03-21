@@ -1,13 +1,5 @@
 package com.example.olga_kondratenko.autosudoku_v2.model;
 
-
-import android.content.Context;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Statistic implements Serializable{
@@ -16,9 +8,10 @@ public class Statistic implements Serializable{
     public int totalSolved;
     public int totalGenerated;
     public int totalSkipped;
-    public int totalTimeSpend;
-    public int minTimeSpend;
-    public int avarageTime;
+    public long totalTimeSpend;
+    public long totalTimeWasted;
+    public long minTimeSpend;
+  //  public int avarageTime;
 
 
     public Statistic() {
@@ -27,7 +20,8 @@ public class Statistic implements Serializable{
         totalSkipped = 0;
         totalTimeSpend = 0;
         minTimeSpend = 0;
-        avarageTime = 0;
+        totalTimeWasted =0;
+       // avarageTime = 0;
     }
 
     public static Statistic get(){

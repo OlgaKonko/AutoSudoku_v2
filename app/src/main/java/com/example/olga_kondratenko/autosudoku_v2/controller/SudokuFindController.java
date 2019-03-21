@@ -31,7 +31,7 @@ public class SudokuFindController {
 
     public void actionDone() {
         if (!isFirstActionDone){
-            //setStartTime
+            Controller.getViewController().startTimer();
             Statistic.get().totalGenerated++;
             isFirstActionDone = true;
         }
@@ -40,6 +40,8 @@ public class SudokuFindController {
     public void loadSudoku(){
         try {
             sudokuModel = Controller.getModuleSwitcher().fileManager.loadSudoku();
+            long time = Controller.getModuleSwitcher().fileManager.loadTimer();
+            Controller.getViewController().setTime(time);
             newGameNeeded = false;
             isFirstActionDone = true;
         } catch (Exception e) {
@@ -48,6 +50,7 @@ public class SudokuFindController {
     }
     public void generateSudoku(){
         newGameNeeded = true;
+        Controller.getViewController().resetTimer();
         Controller.getModuleSwitcher().showSpinner();
         new SudokuCreateWaiterController().execute();
     }
@@ -110,5 +113,6 @@ public class SudokuFindController {
             }
             Controller.getViewController().hideNumberField();
         }
+        Controller.getViewController().startTimer();
     }
 }

@@ -74,6 +74,7 @@ public class Controller {
 
     public void saveSudoku() {
         try {
+            moduleSwitcher.fileManager.saveTimer(getViewController().getTimer());
             moduleSwitcher.fileManager.saveSudoku(getFindController().getSudokuModel());
         } catch (IOException e) {
         } catch (ClassNotFoundException e) {
