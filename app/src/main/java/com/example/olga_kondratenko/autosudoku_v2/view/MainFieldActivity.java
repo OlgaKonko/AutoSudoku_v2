@@ -159,6 +159,11 @@ public class MainFieldActivity extends Activity implements ViewController{
     }
 
     @Override
+    public void resetFocus() {
+        field.focusedCell = null;
+    }
+
+    @Override
     public void setInstrument(Instrument instrument) {
         for (ImageButton button:instruments.values()
              ) {button.setBackgroundResource(R.drawable.no_fill);

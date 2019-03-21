@@ -15,6 +15,7 @@ public interface ViewController {
     void markNumberField();
     void markNumberField(List<Boolean> pencilMarks);
     void markCellFocused(int x, int y);
+    void resetFocus();
 
     void markPenNumber(int x, int y, int number);
     void markEmptyField(int x, int y);

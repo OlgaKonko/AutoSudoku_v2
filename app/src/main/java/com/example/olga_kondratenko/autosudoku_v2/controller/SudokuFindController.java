@@ -74,6 +74,7 @@ public class SudokuFindController {
     }
 
     public void  drowNewSudoku(){
+        Controller.getViewController().resetFocus();
         sudokuModel = new SudokuModel();
         for (int x = 0; x < SUDOKU_SIZE; x++){
             for (int y = 0; y < SUDOKU_SIZE; y++) {
