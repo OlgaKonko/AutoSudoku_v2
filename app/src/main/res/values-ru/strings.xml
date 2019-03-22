@@ -1,5 +1,19 @@
 <resources>
     <string name="title_activity_main_field">Судоку</string>
+    <string name="start">Играть</string>
+    <string name="statistic">Статистика</string>
+    <string name="continue_button">Продолжить</string>
+    <string-array name="statistic_fields">
+        <item>Всего решено</item>
+        <item>Всего сгенерированно</item>
+        <item>Процент побед</item>
+        <item>Всего времени проведенно</item>
+        <item>Лучшее время</item>
+    </string-array>
+    <string-array name="victory_messages">
+        <item>Победа!</item>
+        <item>Собранно!</item>
+    </string-array>
     <string-array name="victory_congratulations">
         <item>Поздравляю!</item>
         <item>Вы умничка!</item>

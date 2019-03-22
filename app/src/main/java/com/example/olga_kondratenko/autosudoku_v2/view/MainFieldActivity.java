@@ -13,19 +13,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.olga_kondratenko.autosudoku_v2.R;
 import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.ChoseInstrumentListener;
 import com.example.olga_kondratenko.autosudoku_v2.controller.Controller;
 import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.OneMoreSudokuListener;
 import com.example.olga_kondratenko.autosudoku_v2.model.Instrument;
+import com.example.olga_kondratenko.autosudoku_v2.model.Statistic;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.Field;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.NumbersEnterField;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.Sizes;
 import com.plattysoft.leonids.ParticleSystem;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -292,17 +292,30 @@ numbersField.markNormal(index);
     public void showVictory() {
         Random random = new Random();
         String[] victoryMessages = getResources().getStringArray(R.array.victory_congratulations);
-        String victoryMessage = victoryMessages[random.nextInt(victoryMessages.length)];
+        StringBuilder builder = new StringBuilder();
+        builder.append(victoryMessages[random.nextInt(victoryMessages.length)]);
+        builder.append("\n");
 
-        String[] buttonMessages = getResources().getStringArray(R.array.assept_buttons);
-        String buttonMessage = buttonMessages[random.nextInt(buttonMessages.length)];
+         String[] actionMessages = getResources().getStringArray(R.array.victory_messages);
+        builder.append(actionMessages[random.nextInt(actionMessages.length)]);
+
+        if (Statistic.get().minTimeSpend> getTimer()) {
+            builder.append("\n");
+            String[] recordMessages = getResources().getStringArray(R.array.record_victory_congratulations);
+            builder.append(recordMessages[random.nextInt(recordMessages.length)]);
+        }
+
+       // String[] buttonMessages = getResources().getStringArray(R.array.assept_buttons);
+      //  String buttonMessage = buttonMessages[random.nextInt(buttonMessages.length)];
 
         for (View view:animations.keySet()
              ) {
-            animations.get(view).emit(view, 4);
+            animations.get(view).emit(view, 8);
     }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Toast toast = Toast.makeText(this, builder.toString(), Toast.LENGTH_LONG);
+        toast.show();
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("")
                 .setMessage(victoryMessage)
                 .setCancelable(false)
@@ -314,7 +327,7 @@ numbersField.markNormal(index);
                         });
         AlertDialog alert = builder.create();
 
-        alert.show();
+        alert.show();*/
     }
 
     @Override

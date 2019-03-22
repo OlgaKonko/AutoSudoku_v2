@@ -1,15 +1,19 @@
 <resources>
     <string name="app_name">AutoSudoku</string>
+    <string name="title_activity_main_field">Sudoku</string>
     <string name="start">Start</string>
     <string name="statistic">Statistic</string>
     <string name="continue_button">Continue</string>
-    <string name="title_activity_main_field">Sudoku</string>
     <string-array name="statistic_fields">
         <item>Total sold</item>
         <item>Total generate</item>
         <item>Win percent</item>
         <item>Total time spend</item>
         <item>Best time</item>
+    </string-array>
+    <string-array name="victory_messages">
+        <item>You win!</item>
+        <item>You solve!</item>
     </string-array>
     <string-array name="victory_congratulations">
         <item>Congratulations!</item>

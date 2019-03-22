@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_activity_main_field">Судоку</string>
+    <string name="start">Грати</string>
+    <string name="statistic">Статистика</string>
+    <string name="continue_button">Продовжити</string>
+    <string-array name="statistic_fields">
+        <item>Всього розв'язанно</item>
+        <item>Всього сгенерованно</item>
+        <item>Процент перемог</item>
+        <item>Всього часу проведено</item>
+        <item>Найкращий час</item>
+    </string-array>
+    <string-array name="victory_messages">
+        <item>Перемога!</item>
+        <item>Зібранно!</item>
+        <item>Ви знайшли правильне рішення!</item>
+    </string-array>
     <string-array name="victory_congratulations">
         <item>Поздоровляю!</item>
         <item>Ви краще всіх!</item>

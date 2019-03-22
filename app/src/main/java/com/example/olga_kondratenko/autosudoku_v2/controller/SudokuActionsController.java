@@ -55,6 +55,7 @@ public class SudokuActionsController {
         if (getSudokuModel().getCellSolution(currentCellX, currentCellY) != solutionNumber) {
             getSudokuModel().setCellSolution(currentCellX, currentCellY, solutionNumber, false);
             Controller.getViewController().markPenNumber(currentCellX, currentCellY, solutionNumber);
+            unmarkPencilOnBlock(solutionNumber-1);
         } else {
             getSudokuModel().setCellSolution(currentCellX, currentCellY, 0, false);
             if (getSudokuModel().getPencilMarksNumber(currentCellX, currentCellY) > 0) {
@@ -65,6 +66,26 @@ public class SudokuActionsController {
             }
         }
         penFillActions();
+    }
+
+    private void unmarkPencilOnBlock(int indexNumber){
+        int startX = (currentCellX - (currentCellX % BLOCK_SIZE));
+        int startY = (currentCellY - (currentCellY % BLOCK_SIZE));
+
+
+        for (int index = 0; index < QUANTITY; index++) {
+            int newCellX = (startX + index / BLOCK_SIZE);
+            int newCellY = (startY + index % BLOCK_SIZE);
+            if (getSudokuModel().isPencilMarkPresent(newCellX, newCellY, indexNumber)){
+                getSudokuModel().setPencilNumber(newCellX, newCellY, indexNumber, false);
+                if (getSudokuModel().getCellSolution(newCellX, newCellY) == 0){
+                    Controller.getViewController().removePencilMark(newCellX, newCellY, indexNumber);
+                    if (getSudokuModel().getPencilMarksNumber(newCellX, newCellY) == 0) {
+                        Controller.getViewController().markEmptyField(newCellX, newCellY);
+                    }
+                }
+            }
+        }
     }
 
     private void markPencil(int indexNumber) {
