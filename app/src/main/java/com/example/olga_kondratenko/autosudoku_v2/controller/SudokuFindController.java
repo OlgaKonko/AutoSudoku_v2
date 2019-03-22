@@ -114,6 +114,11 @@ public class SudokuFindController {
             }
             Controller.getViewController().hideNumberField();
         }
-        Controller.getViewController().startTimer();
+        if (!sudokuModel.checkVictory()) {
+            Controller.getViewController().startTimer();
+        }
+        else {
+            Controller.getViewController().showVictory();
+        }
     }
 }
