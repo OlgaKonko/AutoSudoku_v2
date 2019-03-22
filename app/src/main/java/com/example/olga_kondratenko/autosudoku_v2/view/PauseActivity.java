@@ -64,6 +64,11 @@ public class PauseActivity extends Activity {
 
             builder.append(String.format("%s : %d m %02d s \n", statisticMessages[4], minutes, seconds));
         }
+
+        builder.append(String.format("%s : %d \n", statisticMessages[5], Statistic.get().totalHints));
+        if (Statistic.get().hintsNow>0){
+        builder.append(String.format("%s : %d \n", statisticMessages[6], Statistic.get().hintsNow));
+        }
         return builder.toString();
     }
 

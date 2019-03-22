@@ -12,6 +12,7 @@
     <string name="reset">Reset</string>
     <string name="reset_title">Reset statistic</string>
     <string name="reset_message">Are you sure that you want to reset statistic?</string>
+    <string name="hint_message">Do you need a hint?</string>
     <string name="reset_confirm">Yes</string>
     <string name="reset_decline">No</string>
     <string-array name="statistic_fields">
@@ -20,6 +21,8 @@
         <item>Win percent</item>
         <item>Total time spend</item>
         <item>Best time</item>
+        <item>Total hints get</item>
+        <item>Hints on current sudoku get</item>
     </string-array>
     <string-array name="victory_messages">
         <item>You win!</item>

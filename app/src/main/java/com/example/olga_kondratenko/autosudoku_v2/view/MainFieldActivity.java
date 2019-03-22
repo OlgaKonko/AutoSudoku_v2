@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.olga_kondratenko.autosudoku_v2.R;
 import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.ChoseInstrumentListener;
 import com.example.olga_kondratenko.autosudoku_v2.controller.Controller;
+import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.HintListener;
 import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.OneMoreSudokuListener;
 import com.example.olga_kondratenko.autosudoku_v2.model.Instrument;
 import com.example.olga_kondratenko.autosudoku_v2.model.Statistic;
@@ -342,5 +343,17 @@ numbersField.markNormal(index);
         stopTimer(false);
         Intent intent = new Intent(this, PauseActivity.class);
         this.startActivity(intent);
+    }
+
+    public void hintConfirmationShown(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.hint_message)
+                .setPositiveButton(R.string.reset_confirm, new HintListener())
+                .setNegativeButton(R.string.reset_decline,
+                        (dialog, id) -> dialog.cancel());
+        AlertDialog alert = builder.create();
+
+        alert.show();
+
     }
 }

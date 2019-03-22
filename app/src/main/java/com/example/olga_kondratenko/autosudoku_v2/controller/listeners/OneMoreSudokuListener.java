@@ -9,7 +9,7 @@ public class OneMoreSudokuListener implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
         Controller.getViewController().hideVictory();
-        Controller.getStatisticController().onNewGenerete();
+        Controller.getStatisticController().onNewGenerate();
         Controller.getFindController().generateSudoku();
     }
 }

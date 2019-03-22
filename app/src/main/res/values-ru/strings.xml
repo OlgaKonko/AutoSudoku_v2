@@ -6,6 +6,7 @@
     <string name="reset">Обнулить</string>
     <string name="reset_title">Сброс статистики</string>
     <string name="reset_message">Вы уверенны, что хотите сбросить статистику? Текущие результаты не возможно будет востановить.</string>
+    <string name="hint_message">Вам нужна подсказка?</string>
     <string name="reset_confirm">Да</string>
     <string name="reset_decline">Нет</string>
     <string-array name="statistic_fields">
@@ -14,6 +15,8 @@
         <item>Процент побед</item>
         <item>Всего времени проведенно</item>
         <item>Лучшее время</item>
+        <item>Всего подсказок</item>
+        <item>Подсказок в текущем судоку</item>
     </string-array>
     <string-array name="victory_messages">
         <item>Победа!</item>
