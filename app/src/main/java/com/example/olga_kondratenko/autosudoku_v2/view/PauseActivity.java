@@ -2,12 +2,15 @@ package com.example.olga_kondratenko.autosudoku_v2.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.olga_kondratenko.autosudoku_v2.R;
+import com.example.olga_kondratenko.autosudoku_v2.controller.Controller;
 import com.example.olga_kondratenko.autosudoku_v2.model.Statistic;
 
 public class PauseActivity extends Activity {
@@ -66,5 +69,21 @@ public class PauseActivity extends Activity {
 
     public void closeStatistic(View view) {
         this.finish();
+    }
+
+    public void resetStatistic(View view) {
+         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.reset_title)
+                .setMessage(R.string.reset_message)
+                .setPositiveButton(R.string.reset_confirm, (dialog, id) -> {
+                    Controller.getStatisticController().reset();
+                    dialog.cancel();
+                    statisic.setText(getStatistic());
+                })
+                .setNegativeButton(R.string.reset_decline,
+                        (dialog, id) -> dialog.cancel());
+        AlertDialog alert = builder.create();
+
+        alert.show();
     }
 }

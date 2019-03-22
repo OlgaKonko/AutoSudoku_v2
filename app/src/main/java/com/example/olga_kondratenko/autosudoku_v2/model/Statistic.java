@@ -14,7 +14,7 @@ public class Statistic implements Serializable{
   //  public int avarageTime;
 
 
-    public Statistic() {
+    private Statistic() {
         totalGenerated = 0;
         totalSolved = 0;
         totalSkipped = 0;
@@ -29,6 +29,10 @@ public class Statistic implements Serializable{
             instance = new Statistic();
         }
         return instance;
+    }
+
+    public static void reset(){
+       instance = new Statistic();
     }
 
     public static void set(Statistic newStatistic){

@@ -3,6 +3,11 @@
     <string name="start">Играть</string>
     <string name="statistic">Статистика</string>
     <string name="continue_button">Продолжить</string>
+    <string name="reset">Обнулить</string>
+    <string name="reset_title">Сброс статистики</string>
+    <string name="reset_message">Вы уверенны, что хотите сбросить статистику? Текущие результаты не возможно будет востановить.</string>
+    <string name="reset_confirm">Да</string>
+    <string name="reset_decline">Нет</string>
     <string-array name="statistic_fields">
         <item>Всего решено</item>
         <item>Всего сгенерированно</item>

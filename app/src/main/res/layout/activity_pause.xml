@@ -7,6 +7,22 @@
     tools:context="com.example.olga_kondratenko.autosudoku_v2.view.PauseActivity">
 
     <Button
+        android:id="@+id/statistic_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="364dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="resetStatistic"
+        android:text="@string/reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statistic_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
         android:id="@+id/statistic_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,12 +37,13 @@
 
     <TextView
         android:id="@+id/statistic_name"
-        android:layout_width="347dp"
+        android:layout_width="0dp"
         android:layout_height="47dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/statistic"
+        android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,11 +57,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/statistic_continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statistic_name" />
+        app:layout_constraintTop_toBottomOf="@+id/statistic_reset" />
 
 </android.support.constraint.ConstraintLayout>

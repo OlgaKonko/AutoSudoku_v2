@@ -51,7 +51,8 @@ public class InnerCell extends TableLayout {
         pensilCells.add(pencilCell);
         pencilCell.setBackgroundResource(R.drawable.light_border);
         pencilCell.setOnClickListener(listener);
-        //button.setTextSize(number.getTextSize()/9 );
+        pencilCell.setPadding(0,0,0,0);
+        pencilCell.setTextSize(6);
         // button.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
         row.addView(pencilCell, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT));
@@ -85,7 +86,7 @@ public class InnerCell extends TableLayout {
     }
 
     public void markPencil(int number){
-        pensilCells.get(number).setText(String.valueOf(number));
+        pensilCells.get(number).setText(String.valueOf(number+1));
         pensilCells.get(number).setBackgroundResource(R.drawable.light_border_fill);
     }
 

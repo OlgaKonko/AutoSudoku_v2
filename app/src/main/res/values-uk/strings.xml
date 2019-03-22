@@ -4,6 +4,11 @@
     <string name="start">Грати</string>
     <string name="statistic">Статистика</string>
     <string name="continue_button">Продовжити</string>
+    <string name="reset">Обнулити</string>
+    <string name="reset_title">Обнулення статистики</string>
+    <string name="reset_message">Ви впевнені, що хочете обнулити статистику? Поточні результати буде неможливо відновити.</string>
+    <string name="reset_confirm">Так</string>
+    <string name="reset_decline">Ні</string>
     <string-array name="statistic_fields">
         <item>Всього розв'язанно</item>
         <item>Всього сгенерованно</item>
