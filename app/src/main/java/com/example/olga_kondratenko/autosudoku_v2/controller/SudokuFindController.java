@@ -2,9 +2,13 @@ package com.example.olga_kondratenko.autosudoku_v2.controller;
 
 
 import com.example.olga_kondratenko.autosudoku_v2.controller.background.SudokuCreateWaiterController;
+import com.example.olga_kondratenko.autosudoku_v2.model.Options;
 import com.example.olga_kondratenko.autosudoku_v2.model.Statistic;
 import com.example.olga_kondratenko.autosudoku_v2.model.SudokuModel;
+import com.example.olga_kondratenko.autosudoku_v2.model.Level;
 import com.example.olga_kondratenko.autosudoku_v2.sudoku_generator.model.Sudoku;
+
+import java.util.Random;
 
 import static com.example.olga_kondratenko.autosudoku_v2.sudoku_generator.constants.Constants.SUDOKU_SIZE;
 
@@ -39,7 +43,7 @@ public class SudokuFindController {
 
     public void loadSudoku(){
         try {
-            sudokuModel = Controller.getModuleSwitcher().fileManager.loadSudoku();
+            sudokuModel = Controller.getModuleSwitcher().fileManager.loadSudoku(Options.get().level);
             long time = Controller.getModuleSwitcher().fileManager.loadTimer();
             Controller.getViewController().setTime(time);
             newGameNeeded = false;
@@ -90,7 +94,32 @@ public class SudokuFindController {
                 Controller.getActionsController().penFillActions(x,y);
             }
         }
+        drowHintsByLevel();
         Controller.getViewController().hideNumberField();
+    }
+
+    public void drowHintsByLevel(){
+        Level level = Options.get().level;
+        sudokuModel.setLevel(level);
+       for (int index = 0; index < level.getHintQuantity(); index++){
+           markHint();
+       }
+    }
+
+    public void markHint() {
+        Random random = new Random();
+        boolean hintAdd = false;
+        do {
+            int x = random.nextInt(SUDOKU_SIZE);
+            int y = random.nextInt(SUDOKU_SIZE);
+            if(sudokuModel.getCellSolution(x,y)==0){
+                sudokuModel.setCellSolution(x, y, sudoku.getSolved(x,y), true);
+                Controller.getViewController().markGivenValue(x, y, sudokuModel.getCellSolution(x,y));
+                Controller.getActionsController().penFillActions(x,y);
+                hintAdd = true;
+            }
+        }
+        while (!hintAdd);
     }
 
     public void  drowSavedSudoku() {

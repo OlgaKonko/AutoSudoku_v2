@@ -1,6 +1,7 @@
 package com.example.olga_kondratenko.autosudoku_v2.controller;
 
 
+import com.example.olga_kondratenko.autosudoku_v2.model.Level;
 import com.example.olga_kondratenko.autosudoku_v2.view.MainFieldActivity;
 import com.example.olga_kondratenko.autosudoku_v2.view.ModuleSwitcher;
 import com.example.olga_kondratenko.autosudoku_v2.view.ViewController;

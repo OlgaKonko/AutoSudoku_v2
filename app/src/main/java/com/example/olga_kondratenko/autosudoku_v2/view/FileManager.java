@@ -3,8 +3,10 @@ package com.example.olga_kondratenko.autosudoku_v2.view;
 
 import android.content.Context;
 
+import com.example.olga_kondratenko.autosudoku_v2.model.Options;
 import com.example.olga_kondratenko.autosudoku_v2.model.Statistic;
 import com.example.olga_kondratenko.autosudoku_v2.model.SudokuModel;
+import com.example.olga_kondratenko.autosudoku_v2.model.Level;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,14 +18,15 @@ public class FileManager {
     Context packageContext;
     String savedSudokuFileName ="Saved sudoku";
     String statisticFileName ="Statistic";
+    String optionsFileName ="Options";
     String timerFileName ="Timer";
 
     public FileManager(Context packageContext) {
         this.packageContext = packageContext;
     }
 
-    public SudokuModel loadSudoku() throws IOException, ClassNotFoundException {
-        FileInputStream fis = packageContext.openFileInput(savedSudokuFileName);
+    public SudokuModel loadSudoku(Level level) throws IOException, ClassNotFoundException {
+        FileInputStream fis = packageContext.openFileInput(savedSudokuFileName+level);
         ObjectInputStream is = new ObjectInputStream(fis);
         SudokuModel simpleClass = (SudokuModel) is.readObject();
         is.close();
@@ -32,7 +35,7 @@ public class FileManager {
     }
 
     public void saveSudoku(SudokuModel sudokuModel) throws IOException, ClassNotFoundException {
-        FileOutputStream fos = packageContext.openFileOutput(savedSudokuFileName, Context.MODE_PRIVATE);
+        FileOutputStream fos = packageContext.openFileOutput(savedSudokuFileName+sudokuModel.getLevel(), Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
         os.writeObject(sudokuModel);
         os.close();
@@ -69,6 +72,23 @@ public class FileManager {
         FileOutputStream fos = packageContext.openFileOutput(statisticFileName, Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
         os.writeObject(Statistic.get());
+        os.close();
+        fos.close();
+    }
+
+    public void loadOptions() throws IOException, ClassNotFoundException {
+        FileInputStream fis = packageContext.openFileInput(optionsFileName);
+        ObjectInputStream is = new ObjectInputStream(fis);
+        Options simpleClass = (Options) is.readObject();
+        is.close();
+        fis.close();
+        Options.set(simpleClass);
+    }
+
+    public void saveOptions() throws IOException, ClassNotFoundException {
+        FileOutputStream fos = packageContext.openFileOutput(optionsFileName, Context.MODE_PRIVATE);
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+        os.writeObject(Options.get());
         os.close();
         fos.close();
     }

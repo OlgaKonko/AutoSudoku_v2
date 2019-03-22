@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/statistic_button"
         android:layout_width="234dp"
-        android:layout_height="134dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -20,19 +20,80 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startGameButton"
-        app:layout_constraintVertical_bias="0.388" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <Button
         android:id="@+id/startGameButton"
         android:layout_width="234dp"
-        android:layout_height="134dp"
+        android:layout_height="64dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="172dp"
         android:text="@string/start"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="223dp" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startGameButton">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/easy_level_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:onClick="chooseLevel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/easy_level" />
+
+            <RadioButton
+                android:id="@+id/medium_level_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:onClick="chooseLevel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/medium_level" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="135dp"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/hard_level_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:onClick="chooseLevel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/hard_level" />
+
+            <RadioButton
+                android:id="@+id/very_hard_level_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:onClick="chooseLevel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/very_hard_level" />
+        </TableRow>
+
+    </TableLayout>
 </android.support.constraint.ConstraintLayout>

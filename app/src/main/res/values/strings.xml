@@ -2,6 +2,11 @@
     <string name="app_name">AutoSudoku</string>
     <string name="title_activity_main_field">Sudoku</string>
     <string name="start">Start</string>
+    <string name="easy_level">Easy</string>
+    <string name="medium_level">Medium</string>
+    <string name="hard_level">Hard</string>
+    <string name="very_hard_level">Very Hard</string>
+
     <string name="statistic">Statistic</string>
     <string name="continue_button">Continue</string>
     <string name="reset">Reset</string>

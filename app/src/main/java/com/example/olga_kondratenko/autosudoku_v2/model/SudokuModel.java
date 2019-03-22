@@ -12,6 +12,7 @@ import static com.example.olga_kondratenko.autosudoku_v2.utils.Constants.QUANTIT
 public class SudokuModel implements Serializable{
     private List<List<SudokuCellModel>> cells;
     private List<Integer> solutionsTotal;
+    private Level level;
 
     public SudokuModel() {
         solutionsTotal= new ArrayList<>(QUANTITY);
@@ -24,6 +25,14 @@ public class SudokuModel implements Serializable{
             cells.add(row);
             solutionsTotal.add(0);
         }
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public int getCellSolution(int x, int y){
@@ -42,8 +51,6 @@ public class SudokuModel implements Serializable{
         }
         cell.solution = solution;
         cell.given = given;
-
-
     }
 
     public boolean isCellGiven(int x, int y){

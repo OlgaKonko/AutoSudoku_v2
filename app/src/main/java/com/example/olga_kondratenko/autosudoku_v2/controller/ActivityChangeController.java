@@ -5,6 +5,8 @@ import com.example.olga_kondratenko.autosudoku_v2.controller.background.Generate
 import com.example.olga_kondratenko.autosudoku_v2.model.Instrument;
 import com.example.olga_kondratenko.autosudoku_v2.view.ModuleSwitcher;
 
+import java.io.IOException;
+
 public class ActivityChangeController {
 
     private ModuleSwitcher getModuleSwitcher(){
@@ -22,6 +24,10 @@ public class ActivityChangeController {
 
     public void startGame() {
         Controller.getInstrumentController().initInstrument(Instrument.PEN);
+        try {
+            Controller.getModuleSwitcher().fileManager.saveOptions();
+        } catch (Exception e) {
+        }
         getModuleSwitcher().showGame();
     }
 }

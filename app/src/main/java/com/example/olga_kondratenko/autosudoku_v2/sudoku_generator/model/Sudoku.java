@@ -5,6 +5,7 @@ import java.util.Random;
 import static com.example.olga_kondratenko.autosudoku_v2.sudoku_generator.constants.Constants.SUDOKU_SIZE;
 public class Sudoku {
     int[][] field;
+    int[][] solvedField;
     public long seed;
     long realSeed;
     Random random;
@@ -12,6 +13,7 @@ public class Sudoku {
 
     public Sudoku(long seed) {
         field = new int[SUDOKU_SIZE][SUDOKU_SIZE];
+        solvedField = new int[SUDOKU_SIZE][SUDOKU_SIZE];
         this.seed = seed;
         realSeed = seed;
         random = new Random(realSeed);
@@ -20,6 +22,10 @@ public class Sudoku {
 
     public int get(int x, int y) {
         return field[x][y];
+    }
+
+    public int getSolved(int x, int y) {
+        return solvedField[x][y];
     }
 
     public void set(int x, int y, int number) {
@@ -38,6 +44,7 @@ public class Sudoku {
             random.setSeed(realSeed);
             fill();
         }
+        endFill();
     }
 
     private void fill() {
@@ -86,6 +93,13 @@ public class Sudoku {
         for (int x = 0; x < SUDOKU_SIZE; x++)
             for (int y = 0; y < SUDOKU_SIZE; y++) {
                 field[x][y] = 0;
+            }
+    }
+
+    public void endFill() {
+        for (int x = 0; x < SUDOKU_SIZE; x++)
+            for (int y = 0; y < SUDOKU_SIZE; y++) {
+                solvedField[x][y] = field[x][y];
             }
     }
 }

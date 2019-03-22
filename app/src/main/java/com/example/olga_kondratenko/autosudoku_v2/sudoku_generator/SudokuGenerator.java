@@ -10,8 +10,8 @@ import static com.example.olga_kondratenko.autosudoku_v2.utils.Constants.QUANTIT
 public class SudokuGenerator {
 
     public static Sudoku generateSudoku(long seed) {
-       // Sudoku sudoku = new Sudoku(seed);
-        return generateTestSudoku(seed);
+        Sudoku sudoku = new Sudoku(seed);
+        return compliteSudoku(sudoku);
     }
 
     public static Sudoku generateTestSudoku(long seed) {
@@ -28,6 +28,7 @@ public class SudokuGenerator {
     public static Sudoku compliteSudoku(Sudoku sudoku) {
         SudokuCleaner cleaner = new SudokuCleaner(sudoku);
         cleaner.clearSells();
+
         return sudoku;
     }
 

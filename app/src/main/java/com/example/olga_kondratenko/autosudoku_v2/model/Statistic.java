@@ -1,6 +1,7 @@
 package com.example.olga_kondratenko.autosudoku_v2.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class Statistic implements Serializable{
     private static Statistic instance;
@@ -12,7 +13,6 @@ public class Statistic implements Serializable{
     public long totalTimeWasted;
     public long minTimeSpend;
   //  public int avarageTime;
-
 
     private Statistic() {
         totalGenerated = 0;
