@@ -3,6 +3,7 @@ package com.example.olga_kondratenko.autosudoku_v2.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.olga_kondratenko.autosudoku_v2.R;
 import com.example.olga_kondratenko.autosudoku_v2.controller.listeners.ChoseInstrumentListener;
@@ -22,9 +22,13 @@ import com.example.olga_kondratenko.autosudoku_v2.model.Instrument;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.Field;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.NumbersEnterField;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.Sizes;
+import com.plattysoft.leonids.ParticleSystem;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static com.example.olga_kondratenko.autosudoku_v2.model.Instrument.PEN;
@@ -40,6 +44,11 @@ public class MainFieldActivity extends Activity implements ViewController{
     public ProgressBar spinner;
 
     public TextView timerTextView;
+
+    Handler timerHandler = new Handler();
+    Timer timerRunnable = new Timer();
+
+    Map<View, ParticleSystem> animations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +73,8 @@ public class MainFieldActivity extends Activity implements ViewController{
         timerTextView =  findViewById(R.id.timer);
         setButtonsSize();
 
+        setWinAnimation();
+
         instance = this;
 
         Controller.getController().fieldDrowActions();
@@ -74,6 +85,23 @@ public class MainFieldActivity extends Activity implements ViewController{
     public void onResume()
     {super.onResume();
         instance = this;
+        if (timerRunnable.isStarted){
+            startTimer();
+            timerRunnable.setPauseTime();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        stopTimer(false);
+        timerRunnable.saveCurrentTime();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Controller.getController().saveSudoku();
+        super.onDestroy();
     }
 
     private void setTableSize() {
@@ -101,9 +129,18 @@ public class MainFieldActivity extends Activity implements ViewController{
 
     }
 
+    private void setWinAnimation(){
+        animations = new HashMap<>();
+        animations.put((View) findViewById(R.id.emiter_top_left), new ParticleSystem(this, 80, R.drawable.animated_confetti, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.3f, 270, 0)
+                .setRotationSpeed(144)
+                .setAcceleration(0.00005f, 90));
 
-    Handler timerHandler = new Handler();
-    Timer timerRunnable = new Timer();
+        animations.put((View) findViewById(R.id.emiter_top_right),new ParticleSystem(this, 80, R.drawable.animated_confetti, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 270)
+                .setRotationSpeed(144)
+                .setAcceleration(0.00005f, 90));
+    }
 
     @Override
     public void startTimer() {
@@ -111,13 +148,17 @@ public class MainFieldActivity extends Activity implements ViewController{
     }
 
     @Override
-    public void stopTimer() {
+    public void stopTimer(boolean isFullyStop) {
         timerHandler.removeCallbacks(timerRunnable);
+        timerRunnable.saveCurrentTime();
+        if (isFullyStop){
+            timerRunnable.isStarted = false;
+        }
     }
 
     @Override
     public void resetTimer() {
-        stopTimer();
+        stopTimer(true);
         timerTextView.setText(String.format("%d:%02d", 0, 0));
         timerRunnable.resetTimer();
     }
@@ -249,7 +290,6 @@ numbersField.markNormal(index);
 
     @Override
     public void showVictory() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         Random random = new Random();
         String[] victoryMessages = getResources().getStringArray(R.array.victory_congratulations);
         String victoryMessage = victoryMessages[random.nextInt(victoryMessages.length)];
@@ -257,6 +297,12 @@ numbersField.markNormal(index);
         String[] buttonMessages = getResources().getStringArray(R.array.assept_buttons);
         String buttonMessage = buttonMessages[random.nextInt(buttonMessages.length)];
 
+        for (View view:animations.keySet()
+             ) {
+            animations.get(view).emit(view, 4);
+    }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("")
                 .setMessage(victoryMessage)
                 .setCancelable(false)
@@ -267,7 +313,21 @@ numbersField.markNormal(index);
                             }
                         });
         AlertDialog alert = builder.create();
+
         alert.show();
     }
 
+    @Override
+    public void hideVictory() {
+        for (ParticleSystem animation:animations.values()
+                ) {
+            animation.cancel();
+        }
+    }
+
+    public void openStatistic(View view) {
+        stopTimer(false);
+        Intent intent = new Intent(this, PauseActivity.class);
+        this.startActivity(intent);
+    }
 }

@@ -7,12 +7,28 @@
     android:layout_height="match_parent"
     tools:context="com.example.olga_kondratenko.autosudoku_v2.view.MainFieldActivity">
 
+    <View android:id="@+id/emiter_top_left"
+        android:layout_gravity="top|left"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <View
+        android:id="@+id/emiter_top_right"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_gravity="top|right"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="42dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
         <LinearLayout
             android:id="@+id/top"
@@ -25,6 +41,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+            <Button
+                android:id="@+id/pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/no_fill"
+                android:text="||"
+                android:onClick="openStatistic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
             <TextView
                 android:id="@+id/timer"
@@ -96,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/no_fill"
+                android:background="@drawable/set_aura"
                 android:scaleType="fitCenter"
                 android:src="@drawable/pen" />
 

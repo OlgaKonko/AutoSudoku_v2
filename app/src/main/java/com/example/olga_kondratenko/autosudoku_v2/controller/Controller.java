@@ -13,6 +13,7 @@ public class Controller {
     private InstrumentActionsController instrumentController;
     private SudokuFindController findController;
     private ActivityChangeController changeController;
+    private StatisticController statisticController;
 
     private ModuleSwitcher moduleSwitcher;
     private ViewController viewController;
@@ -22,7 +23,7 @@ public class Controller {
         instrumentController = new InstrumentActionsController();
         findController = new SudokuFindController();
         changeController = new ActivityChangeController();
-
+        statisticController = new StatisticController();
     }
 
     public static Controller getController() {
@@ -39,6 +40,10 @@ public class Controller {
 
     public static InstrumentActionsController getInstrumentController() {
         return instance.instrumentController;
+    }
+
+    public static StatisticController getStatisticController() {
+        return instance.statisticController;
     }
 
     public static SudokuFindController getFindController() {

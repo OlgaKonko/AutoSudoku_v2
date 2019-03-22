@@ -26,13 +26,14 @@ public interface ViewController {
 
     void markAsSolved(int x, int y, int level);
     void showVictory();
+    void hideVictory();
 
     void markNumberAsUsed(int index);
     void markNumberAsOverUsed(int index);
     void markNumberAsNormal(int index);
 
     void startTimer();
-    void stopTimer();
+    void stopTimer(boolean isFullyStop);
     void resetTimer();
 
     long getTimer();
