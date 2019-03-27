@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -77,7 +78,7 @@ public class PauseActivity extends Activity {
     }
 
     public void resetStatistic(View view) {
-         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
         builder.setTitle(R.string.reset_title)
                 .setMessage(R.string.reset_message)
                 .setPositiveButton(R.string.reset_confirm, (dialog, id) -> {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -49,8 +50,7 @@ public class Cell extends TableLayout {
 
         penCell = new Button(this.getContext());
         penCell.setOnClickListener(listener);
-        //penCell.setOnClickListener(listener);
-       // penCell.setTextSize(TypedValue.COMPLEX_UNIT_DIP, penCell.getTextSize()*0.7f );
+         penCell.setTextSize(TypedValue.COMPLEX_UNIT_DIP, penCell.getTextSize()*0.7f );
       //  textSize = penCell.getTextSize() / 12;
         // this.addView(penCell, new LayoutParams(LayoutParams.MATCH_PARENT,
         //         LayoutParams.MATCH_PARENT));
@@ -123,8 +123,15 @@ public class Cell extends TableLayout {
         this.setImageResource(R.drawable.given_cell);
     }
 
+    public void markHint(int number){
+        setPenView();
+        this.penCell.setText(String.valueOf(number));
+        this.setImageResource(R.drawable.hint_cell);
+    }
+
     public void markUsual(){
         setPenView();
+        currentSolvedLevel = 0;
         this.setImageResource(R.drawable.shape);
     }
 

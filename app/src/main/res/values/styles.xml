@@ -8,21 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
-    <style name="WaitingTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
+    <style name="MainTheme" parent="AppTheme">
+        <item name="android:colorBackground">@color/backgroundColor</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="dialogTheme">@style/AlertDialogCustom</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:colorBackground">@color/backgroundColor</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button</item>
+    </style>
 
 </resources>

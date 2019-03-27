@@ -2,10 +2,10 @@
     <string name="app_name">AutoSudoku</string>
     <string name="title_activity_main_field">Sudoku</string>
     <string name="start">Start</string>
-    <string name="easy_level">Easy</string>
-    <string name="medium_level">Medium</string>
-    <string name="hard_level">Hard</string>
-    <string name="very_hard_level">Very Hard</string>
+    <string name="easy_level">Elementary</string>
+    <string name="medium_level">Easy</string>
+    <string name="hard_level">Medium</string>
+    <string name="very_hard_level">Hard</string>
 
     <string name="statistic">Statistic</string>
     <string name="continue_button">Continue</string>
@@ -13,6 +13,7 @@
     <string name="reset_title">Reset statistic</string>
     <string name="reset_message">Are you sure that you want to reset statistic?</string>
     <string name="hint_message">Do you need a hint?</string>
+    <string name="no_hint_message">Sudoku was solved!</string>
     <string name="reset_confirm">Yes</string>
     <string name="reset_decline">No</string>
     <string-array name="statistic_fields">

@@ -32,6 +32,7 @@ public class SudokuActionsController {
         }
         else {
             Controller.getViewController().hideNumberField();
+            Controller.getViewController().removeFocuse();
         }
     }
 

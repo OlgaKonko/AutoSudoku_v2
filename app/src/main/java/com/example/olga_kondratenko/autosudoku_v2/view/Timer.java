@@ -27,6 +27,7 @@ public void resetTimer(){
                 startTime =System.currentTimeMillis()-time;
                 int seconds = (int) (time / 1000);
                 int minutes = seconds / 60;
+                seconds = seconds % 60;
                 MainFieldActivity.instance.timerTextView.setText(String.format("%02d:%02d", minutes, seconds));
         }
 

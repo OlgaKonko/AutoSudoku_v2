@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="title_activity_main_field">Судоку</string>
     <string name="start">Грати</string>
+    <string name="easy_level">Легко</string>
+    <string name="medium_level">Середне</string>
+    <string name="hard_level">Складно</string>
+    <string name="very_hard_level">Дуже складно</string>
+
     <string name="statistic">Статистика</string>
     <string name="continue_button">Продовжити</string>
     <string name="reset">Обнулити</string>
     <string name="reset_title">Обнулення статистики</string>
     <string name="reset_message">Ви впевнені, що хочете обнулити статистику? Поточні результати буде неможливо відновити.</string>
     <string name="hint_message">Вам потрібна підказка?</string>
+    <string name="no_hint_message">Судоку вже розв\'язанно!</string>
     <string name="reset_confirm">Так</string>
     <string name="reset_decline">Ні</string>
     <string-array name="statistic_fields">
-        <item>Всього розв'язанно</item>
+        <item>Всього розв\'язанно</item>
         <item>Всього сгенерованно</item>
         <item>Процент перемог</item>
         <item>Всього часу проведено</item>
@@ -19,12 +25,12 @@
         <item>Всього підказок</item>
         <item>Підказок у поточному судоку</item>
     </string-array>
-    <string-array name="victory_messages">
+    <string-array name="victory_messages" tools:ignore="InconsistentArrays">
         <item>Перемога!</item>
-        <item>Зібранно!</item>
+        <item>Зібрано!</item>
         <item>Ви знайшли правильне рішення!</item>
     </string-array>
-    <string-array name="victory_congratulations">
+    <string-array name="victory_congratulations" tools:ignore="InconsistentArrays">
         <item>Поздоровляю!</item>
         <item>Ви краще всіх!</item>
         <item>Ви просто молодець!</item>
@@ -33,7 +39,7 @@
         <item>Офігенно!</item>
         <item>Прекрасно!</item>
     </string-array>
-    <string-array name="assept_buttons">
+    <string-array name="assept_buttons" tools:ignore="InconsistentArrays">
         <item>Я це зробила!</item>
         <item>Я склала!</item>
         <item>OK</item>

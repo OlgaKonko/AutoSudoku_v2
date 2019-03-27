@@ -13,6 +13,7 @@ public class Sizes {
     public static int layoutHeight = 1920;
 
     public static int padding;
+    public static int leftPadding;
 
     public static int gameFieldSize;
     public static int gameFieldLinesSize;
@@ -31,7 +32,8 @@ public class Sizes {
 
         padding = setedPadding;
 
-        gameFieldSize = layoutWidth - (padding*2);
+        gameFieldSize = Math.min(layoutWidth, (layoutHeight*3)/5) - (padding*2);
+        leftPadding = (layoutWidth-gameFieldCellSize-padding*4)/8-padding;
         gameFieldLinesSize = gameFieldSize / LINE_SCALE;
         gameFieldCellSize = (gameFieldSize - (gameFieldLinesSize * LINES_SIZE)) / FIELD_SIZE;
         gameFieldInnerCellSize = gameFieldCellSize/ INNER_SELL_SIZE;

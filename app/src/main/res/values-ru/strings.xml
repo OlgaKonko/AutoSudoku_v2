@@ -1,12 +1,19 @@
 <resources>
     <string name="title_activity_main_field">Судоку</string>
     <string name="start">Играть</string>
+
+    <string name="easy_level">Елементарно</string>
+    <string name="medium_level">Лёгко</string>
+    <string name="hard_level">Средне</string>
+    <string name="very_hard_level">Сложно</string>
+
     <string name="statistic">Статистика</string>
     <string name="continue_button">Продолжить</string>
     <string name="reset">Обнулить</string>
     <string name="reset_title">Сброс статистики</string>
     <string name="reset_message">Вы уверенны, что хотите сбросить статистику? Текущие результаты не возможно будет востановить.</string>
     <string name="hint_message">Вам нужна подсказка?</string>
+    <string name="no_hint_message">Судоку уже решенно!</string>
     <string name="reset_confirm">Да</string>
     <string name="reset_decline">Нет</string>
     <string-array name="statistic_fields">
@@ -20,7 +27,7 @@
     </string-array>
     <string-array name="victory_messages">
         <item>Победа!</item>
-        <item>Собранно!</item>
+        <item>Собрано!</item>
     </string-array>
     <string-array name="victory_congratulations">
         <item>Поздравляю!</item>

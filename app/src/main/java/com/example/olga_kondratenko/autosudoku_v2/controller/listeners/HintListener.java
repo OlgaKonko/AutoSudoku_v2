@@ -9,7 +9,7 @@ public class HintListener implements OnClickListener {
     @Override
     public void onClick(DialogInterface dialog, int which) {
         dialog.cancel();
-        Controller.getFindController().markHint();
+        Controller.getFindController().markHint(true);
         Controller.getStatisticController().onHint();
     }
 }

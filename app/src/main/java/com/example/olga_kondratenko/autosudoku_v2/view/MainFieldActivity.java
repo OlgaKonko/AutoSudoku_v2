@@ -2,11 +2,11 @@ package com.example.olga_kondratenko.autosudoku_v2.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -27,7 +27,9 @@ import com.example.olga_kondratenko.autosudoku_v2.view.models.NumbersEnterField;
 import com.example.olga_kondratenko.autosudoku_v2.view.models.Sizes;
 import com.plattysoft.leonids.ParticleSystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -43,13 +45,14 @@ public class MainFieldActivity extends Activity implements ViewController{
     public HashMap<Instrument, ImageButton> instruments;
     public Button continueButton;
     public ProgressBar spinner;
+    public boolean isVictory=false;
 
     public TextView timerTextView;
 
     Handler timerHandler = new Handler();
     Timer timerRunnable = new Timer();
 
-    Map<View, ParticleSystem> animations;
+    List<ParticleSystem> animations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +81,7 @@ public class MainFieldActivity extends Activity implements ViewController{
 
         instance = this;
 
-        Controller.getController().fieldDrowActions();
-
+        new Handler().post(new FieldFill());
     }
 
     @Override
@@ -131,14 +133,19 @@ public class MainFieldActivity extends Activity implements ViewController{
     }
 
     private void setWinAnimation(){
-        animations = new HashMap<>();
-        animations.put((View) findViewById(R.id.emiter_top_left), new ParticleSystem(this, 80, R.drawable.animated_confetti, 10000)
-                .setSpeedModuleAndAngleRange(0f, 0.3f, 270, 0)
+        animations = new ArrayList<>(3);
+        animations.add(new ParticleSystem(this, 80, R.drawable.animated_confetti1, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.3f, 190, 350)
                 .setRotationSpeed(144)
                 .setAcceleration(0.00005f, 90));
 
-        animations.put((View) findViewById(R.id.emiter_top_right),new ParticleSystem(this, 80, R.drawable.animated_confetti, 10000)
-                .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 270)
+        animations.add(new ParticleSystem(this, 80, R.drawable.animated_confetti2, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.3f, 190, 350)
+                .setRotationSpeed(144)
+                .setAcceleration(0.00005f, 90));
+
+        animations.add(new ParticleSystem(this, 80, R.drawable.animated_confetti3, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.3f, 190, 350)
                 .setRotationSpeed(144)
                 .setAcceleration(0.00005f, 90));
     }
@@ -173,6 +180,11 @@ public class MainFieldActivity extends Activity implements ViewController{
     public void setTime(long time) {
         timerRunnable.setTimer(time);
 
+    }
+
+    @Override
+    public void removeFocuse() {
+        field.removeFocus();
     }
 
     public void showSpinner(){
@@ -218,6 +230,12 @@ public class MainFieldActivity extends Activity implements ViewController{
     @Override
     public void markGivenValue(int x, int y, int number) {
         field.cells[x][y].markGiven(number);
+    }
+
+
+    @Override
+    public void markHintValue(int x, int y, int number) {
+        field.cells[x][y].markHint(number);
     }
 
     @Override
@@ -291,6 +309,7 @@ numbersField.markNormal(index);
 
     @Override
     public void showVictory() {
+        isVictory=true;
         Random random = new Random();
         String[] victoryMessages = getResources().getStringArray(R.array.victory_congratulations);
         StringBuilder builder = new StringBuilder();
@@ -309,9 +328,11 @@ numbersField.markNormal(index);
        // String[] buttonMessages = getResources().getStringArray(R.array.assept_buttons);
       //  String buttonMessage = buttonMessages[random.nextInt(buttonMessages.length)];
 
-        for (View view:animations.keySet()
-             ) {
-            animations.get(view).emit(view, 8);
+        setWinAnimation();
+        for(int index = 0; index<animations.size(); index++){
+            int x = Sizes.layoutWidth/(animations.size()+1);
+
+            animations.get(index).emit(x*index, 0,20);
     }
 
         Toast toast = Toast.makeText(this, builder.toString(), Toast.LENGTH_LONG);
@@ -333,7 +354,8 @@ numbersField.markNormal(index);
 
     @Override
     public void hideVictory() {
-        for (ParticleSystem animation:animations.values()
+        isVictory=false;
+        for (ParticleSystem animation:animations
                 ) {
             animation.cancel();
         }
@@ -346,14 +368,21 @@ numbersField.markNormal(index);
     }
 
     public void hintConfirmationShown(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.hint_message)
-                .setPositiveButton(R.string.reset_confirm, new HintListener())
-                .setNegativeButton(R.string.reset_decline,
-                        (dialog, id) -> dialog.cancel());
-        AlertDialog alert = builder.create();
+        if (!isVictory) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
 
-        alert.show();
+            builder.setMessage(R.string.hint_message)
+                    .setPositiveButton(R.string.reset_confirm, new HintListener())
+                    .setNegativeButton(R.string.reset_decline,
+                            (dialog, id) -> dialog.cancel());
+            AlertDialog alert = builder.create();
+
+            alert.show();
+        }
+        else {
+            Toast toast = Toast.makeText(this, R.string.no_hint_message, Toast.LENGTH_LONG);
+            toast.show();
+        }
 
     }
 }

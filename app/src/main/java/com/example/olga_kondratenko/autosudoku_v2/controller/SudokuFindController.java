@@ -83,6 +83,7 @@ public class SudokuFindController {
         for (int x = 0; x < SUDOKU_SIZE; x++){
             for (int y = 0; y < SUDOKU_SIZE; y++) {
                 int number = sudoku.get(x, y);
+                sudokuModel.setCellRightSolution(x,y, sudoku.getSolved(x,y));
                 if (number > 0) {
                     Controller.getViewController().markGivenValue(x, y, number);
                     sudokuModel.setCellSolution(x, y, number, true);
@@ -102,19 +103,24 @@ public class SudokuFindController {
         Level level = Options.get().level;
         sudokuModel.setLevel(level);
        for (int index = 0; index < level.getHintQuantity(); index++){
-           markHint();
+           markHint(false);
        }
     }
 
-    public void markHint() {
+    public void markHint(boolean isAsced) {
         Random random = new Random();
         boolean hintAdd = false;
         do {
             int x = random.nextInt(SUDOKU_SIZE);
             int y = random.nextInt(SUDOKU_SIZE);
             if(sudokuModel.getCellSolution(x,y)==0){
-                sudokuModel.setCellSolution(x, y, sudoku.getSolved(x,y), true);
-                Controller.getViewController().markGivenValue(x, y, sudokuModel.getCellSolution(x,y));
+                sudokuModel.setCellSolution(x, y, sudokuModel.getCellRightSolution(x,y), true);
+                if(isAsced){
+                    Controller.getViewController().markHintValue(x, y, sudokuModel.getCellSolution(x, y));
+                }
+                else {
+                    Controller.getViewController().markGivenValue(x, y, sudokuModel.getCellSolution(x, y));
+                }
                 Controller.getActionsController().penFillActions(x,y);
                 hintAdd = true;
             }

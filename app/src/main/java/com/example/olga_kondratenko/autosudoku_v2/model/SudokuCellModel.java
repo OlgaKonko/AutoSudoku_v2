@@ -10,6 +10,7 @@ import static com.example.olga_kondratenko.autosudoku_v2.utils.Constants.QUANTIT
 public class SudokuCellModel implements Serializable{
     boolean given = false;
     int solution = 0;
+    int rightSolution = 0;
     List<Boolean> pencilMarks = new ArrayList<>(QUANTITY);
 
     boolean isBlockSolved = false;

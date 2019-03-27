@@ -2,8 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#612003</color>
 
+    <color name="backgroundColor">#E6D7BE</color>
+    <color name="buttosColor">#6F6A52</color>
     <color name="textColor">#000000</color>
     <color name="usedTextColor">#9e9e9e</color>
     <color name="overUsedTextColor">#c43b3e</color>

@@ -8,6 +8,7 @@ import java.util.List;
 public interface ViewController {
     void setInstrument(Instrument instrument);
     void markGivenValue(int x, int y, int number);
+    void markHintValue(int x, int y, int number);
     void markUsualValue(int x, int y);
 
     void showNumbersField();
@@ -38,4 +39,6 @@ public interface ViewController {
 
     long getTimer();
     void setTime(long time);
+
+    void removeFocuse();
 }

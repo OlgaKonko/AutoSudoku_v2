@@ -53,6 +53,14 @@ public class SudokuModel implements Serializable{
         cell.given = given;
     }
 
+    public void setCellRightSolution(int x, int y, int solution){
+        cells.get(x).get(y).rightSolution = solution;
+    }
+
+    public int getCellRightSolution(int x, int y){
+        return cells.get(x).get(y).rightSolution;
+    }
+
     public boolean isCellGiven(int x, int y){
         return cells.get(x).get(y).given;
     }
